@@ -19,7 +19,7 @@ python setup.py bdist_wininst
 from distutils.core import setup
 
 data_files = [
-    'README.txt',
+    'README.rst',
     'COPYING.txt',
     'COPYING.LESSER.txt',
     'license.txt',
@@ -36,14 +36,14 @@ ColorPy is a Python package to convert physical descriptions of light -
 
 setup (
     name='colorpy',
-    version='0.1.0',
+    version='0.1.1',
     description='Color calculations with physical descriptions of light spectra',
     long_description=long_description,
     author='Mark Kness',
     author_email='mkness@alumni.utexas.net',
     url='http://markkness.net/colorpy/',
     license='GNU Lesser GPL Version 3',
-    package_dir={'colorpy': ''},
+    package_dir={'colorpy': '.'},
     packages=['colorpy'],
     package_data={'colorpy': data_files},
 )
