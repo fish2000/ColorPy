@@ -125,6 +125,11 @@ lab_from_xyz (xyz) -
 xyz_from_lab (Lab) -
     Convert color from Lab to CIE XYZ.  Inverse of lab_from_xyz().
 
+xyY_from_xyz (xyz) -
+    Given an xyz color, find the 'little' x,y chromaticity, and the intensity Y.
+    See Foley/Van Dam p. 581, eq. 13.21. Inverse of xyz_color_from_xyY().
+
+
 Gamma correction:
 
 simple_gamma_invert (x) -
@@ -906,6 +911,16 @@ def irgb_from_xyz (xyz):
 def irgb_string_from_xyz (xyz):
     '''Convert an xyz color directly into a displayable irgb color hex string.'''
     return irgb_string_from_rgb (rgb_from_xyz (xyz))
+
+# Miscellaneous
+
+def xyY_from_xyz (xyz):
+    '''Given an xyz color, find the 'little' x,y chromaticity, and the intensity Y.
+    See Foley/Van Dam p. 581, eq. 13.21. Inverse of xyz_color_from_xyY().'''
+    Y = xyz[1]
+    sum_xyz = xyz[0] + xyz[1] + xyz[2]
+    scale = 1.0 / sum_xyz
+    return numpy.array([xyz[0] * scale, xyz[1] * scale, Y])
     
 #
 # Initialization - Initialize to sRGB at module startup.

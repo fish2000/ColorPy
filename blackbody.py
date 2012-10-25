@@ -89,9 +89,9 @@ def blackbody_specific_intensity (wl_nm, T_K):
     a = (PLANCK_CONSTANT * SPEED_OF_LIGHT) / (BOLTZMAN_CONSTANT)
     b = (2.0 * PLANCK_CONSTANT * SPEED_OF_LIGHT * SPEED_OF_LIGHT)
     wl_m = wl_nm * 1.0e-9
-    try:
+    if wl_m * T_K != 0:
         exponent = a / (wl_m * T_K)
-    except ZeroDivisionError:
+    else:
         # treat same as large exponent
         return 0.0
     if exponent > 500.0:
