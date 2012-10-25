@@ -21,7 +21,7 @@ rgb_patch_plot (
     rgb_colors,
     color_names,
     title,
-    filename,
+    filename = None,
     patch_gap = 0.05,
     num_across = 6) -
     Draw a set of color patches, specified as linear rgb colors.
@@ -30,7 +30,7 @@ xyz_patch_plot (
     xyz_colors,
     color_names,
     title,
-    filename,
+    filename = None,
     patch_gap = 0.05,
     num_across = 6) -
     Draw a set of color patches specified as xyz colors.
@@ -46,7 +46,7 @@ spectrum_subplot (spectrum) -
 spectrum_plot (
     spectrum,
     title,
-    filename,
+    filename = None,
     xlabel = 'Wavelength ($nm$)',
     ylabel = 'Intensity ($W/m^2$)') -
     
@@ -62,7 +62,7 @@ spectrum_plot (
 
     spectrum - spectrum to plot
     title    - title for plot
-    filename - filename to save plot to
+    filename - filename to save plot to (or None to not save it)
     xlabel   - label for x axis
     ylabel   - label for y axis
 
@@ -84,7 +84,7 @@ color_vs_param_plot (
     param_list - list of parameters (x axis)
     rgb_colors - numpy array, one row for each param in param_list
     title      - title for plot
-    filename   - filename to save plot to
+    filename   - filename to save plot to (or None to not save it)
     plotfunc   - optional plot function to use (default pylab.plot)
     xlabel     - label for x axis
     ylabel     - label for y axis (default 'RGB Color')
@@ -162,7 +162,7 @@ def rgb_patch_plot (
     rgb_colors,
     color_names,
     title,
-    filename,
+    filename = None,
     patch_gap = 0.05,
     num_across = 6):
     '''Draw a set of color patches, specified as linear rgb colors.'''
@@ -196,14 +196,15 @@ def rgb_patch_plot (
         draw_patch (float (ix), float (-iy), colorstring, name, patch_gap)
     pylab.axis ('off')
     pylab.title (title)
-    print 'Saving plot %s' % str (filename)
-    pylab.savefig (filename)
+    if filename is not None:
+        print 'Saving plot %s' % str (filename)
+        pylab.savefig (filename)
 
 def xyz_patch_plot (
     xyz_colors,
     color_names,
     title,
-    filename,
+    filename = None,
     patch_gap = 0.05,
     num_across = 6):
     '''Draw a set of color patches specified as xyz colors.'''
@@ -254,7 +255,7 @@ def spectrum_subplot (spectrum):
 def spectrum_plot (
     spectrum,
     title,
-    filename,
+    filename = None,
     xlabel = 'Wavelength ($nm$)',
     ylabel = 'Intensity ($W/m^2$)'):
     '''Plot for a single spectrum -
@@ -292,8 +293,9 @@ def spectrum_plot (
     pylab.xlabel (xlabel)
     pylab.ylabel (ylabel)
     # done
-    print 'Saving plot %s' % str (filename)
-    pylab.savefig (filename)
+    if filename is not None:
+        print 'Saving plot %s' % str (filename)
+        pylab.savefig (filename)
 
 #
 # Color vs param plot
@@ -303,7 +305,7 @@ def color_vs_param_plot (
     param_list,
     rgb_colors,
     title,
-    filename,
+    filename = None,
     tight    = False,
     plotfunc = pylab.plot,
     xlabel   = 'param',
@@ -348,8 +350,9 @@ def color_vs_param_plot (
         tighten_x_axis (param_list)
     pylab.xlabel (xlabel)
     pylab.ylabel (ylabel)
-    print 'Saving plot %s' % str (filename)
-    pylab.savefig (filename)
+    if filename is not None:
+        print 'Saving plot %s' % str (filename)
+        pylab.savefig (filename)
 
 #
 # Some specialized plots
