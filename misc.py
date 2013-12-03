@@ -61,11 +61,11 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with ColorPy.  If not, see <http://www.gnu.org/licenses/>.
 '''
+from __future__ import division, absolute_import, print_function
+
 import math, numpy, pylab
 
-import colormodels
-import ciexyz
-import plots
+from . import colormodels, ciexyz, plots
 
 # Some sample lists of displayable RGB colors as hex strings
 
@@ -275,12 +275,12 @@ def perceptually_uniform_spectral_colors ():
     
     # convert colors to a nearly perceptually uniform space
     uniforms = numpy.empty ((num_colors, 3))
-    for i in xrange (0, num_colors):
+    for i in range (0, num_colors):
         uniforms [i] = uniform_from_xyz (xyzs [i])
     # determine spacing
     sum_ds = 0.0
     dss = numpy.empty ((num_colors, 1))
-    for i in xrange (0, num_colors-1):
+    for i in range (0, num_colors-1):
         dri = uniforms [i+1] - uniforms [i]
         dsi = math.sqrt (numpy.dot (dri, dri))
         dss [i] = dsi

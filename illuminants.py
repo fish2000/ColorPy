@@ -88,12 +88,11 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with ColorPy.  If not, see <http://www.gnu.org/licenses/>.
 '''
+from __future__ import division, absolute_import, print_function
+
 import math, numpy
 
-import colormodels
-import ciexyz
-import blackbody
-import plots
+from . import colormodels, ciexyz, blackbody, plots
 
 # table of CIE Illuminant D65 spectrum.
 # data from: http://cvrl.ioo.ucl.ac.uk/database/data/cie/Illuminantd65.txt
@@ -646,7 +645,7 @@ def init ():
     global _Illuminant_D65
     _Illuminant_D65 = ciexyz.empty_spectrum()
     (num_wl, num_cols) = _Illuminant_D65.shape
-    for i in xrange (0, num_wl):
+    for i in range (0, num_wl):
         _Illuminant_D65 [i][1] = _Illuminant_D65_table [first_index + i][1]
     # normalization - illuminant is scaled so that Y = 1.0
     xyz = ciexyz.xyz_from_spectrum (_Illuminant_D65)
@@ -690,7 +689,7 @@ def get_constant_illuminant ():
     '''Get an illuminant, with spectrum constant over wavelength, normalized to Y = 1.0.'''
     illuminant = ciexyz.empty_spectrum()
     (num_wl, num_cols) = illuminant.shape
-    for i in xrange (0, num_wl):
+    for i in range (0, num_wl):
         illuminant [i][1] = 1.0
     xyz = ciexyz.xyz_from_spectrum (illuminant)
     if xyz [1] != 0.0:

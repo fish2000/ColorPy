@@ -248,6 +248,8 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with ColorPy.  If not, see <http://www.gnu.org/licenses/>.
 '''
+from __future__ import division, absolute_import, print_function
+
 import math, numpy
 
 # The xyz constructors have some special versions to handle some common situations
@@ -456,8 +458,8 @@ def init (
          phosphor_blue  * intensities [2]))
     # invert to get rgb_from_xyz matrix
     rgb_from_xyz_matrix = numpy.linalg.inv (xyz_from_rgb_matrix)
-    #print 'xyz_from_rgb', str (xyz_from_rgb_matrix)
-    #print 'rgb_from_xyz', str (rgb_from_xyz_matrix)
+    #print('xyz_from_rgb', str (xyz_from_rgb_matrix))
+    #print('rgb_from_xyz', str (rgb_from_xyz_matrix))
 
     # conversions between the (almost) perceptually uniform
     # spaces (Luv, Lab) require the definition of a white point.
@@ -820,7 +822,7 @@ def clip_rgb_color (rgb_color):
             rgb [2] = scaling * (rgb [2] - rgb_min);
             clipped_chromaticity = True
     else:
-        raise ValueError, 'Invalid color clipping method %s' % (str(_clip_method))
+        raise ValueError('Invalid color clipping method %s' % (str(_clip_method)))
             
     # clip intensity if needed (rgb values > 1.0) by scaling
     rgb_max = max (rgb)
@@ -833,7 +835,7 @@ def clip_rgb_color (rgb_color):
         clipped_intensity = True
 
     # gamma correction
-    for index in xrange (0, 3):
+    for index in range (0, 3):
         rgb [index] = display_from_linear_component (rgb [index])
 
     # scale to 0 - 255
@@ -857,7 +859,7 @@ def clip_rgb_color (rgb_color):
 def irgb_string_from_irgb (irgb):
     '''Convert a displayable irgb color (0-255) into a hex string.'''
     # ensure that values are in the range 0-255
-    for index in xrange (0,3):
+    for index in range (0,3):
         irgb [index] = min (255, max (0, irgb [index]))
     # convert to hex string
     irgb_string = '#%02X%02X%02X' % (irgb [0], irgb [1], irgb [2])
@@ -867,9 +869,9 @@ def irgb_from_irgb_string (irgb_string):
     '''Convert a color hex string (like '#AB13D2') into a displayable irgb color.'''
     strlen = len (irgb_string)
     if strlen != 7:
-        raise ValueError, 'irgb_string_from_irgb(): Expecting 7 character string like #AB13D2'
+        raise ValueError('irgb_string_from_irgb(): Expecting 7 character string like #AB13D2')
     if irgb_string [0] != '#':
-        raise ValueError, 'irgb_string_from_irgb(): Expecting 7 character string like #AB13D2'
+        raise ValueError('irgb_string_from_irgb(): Expecting 7 character string like #AB13D2')
     irs = irgb_string [1:3]
     igs = irgb_string [3:5]
     ibs = irgb_string [5:7]

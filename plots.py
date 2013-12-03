@@ -121,11 +121,12 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with ColorPy.  If not, see <http://www.gnu.org/licenses/>.
 '''
+from __future__ import division, absolute_import, print_function
+
 import math, random
 import numpy, pylab
 
-import colormodels
-import ciexyz
+from . import colormodels, ciexyz
 
 # Miscellaneous utilities for plots
 
@@ -134,7 +135,7 @@ def log_interpolate (y0, y1, num_values):
     between y0 and y1. The first value will be y0, the last y1.'''
     rtn = []
     if num_values <= 0:
-        raise ValueError, 'Invalid number of divisions %s in log_interpolate' % (str (num_values))
+        raise ValueError('Invalid number of divisions %s in log_interpolate' % (str (num_values)))
     if num_values == 1:
         # can't use both endpoints, too constrained
         yi = math.sqrt (y0 * y1)
@@ -142,7 +143,7 @@ def log_interpolate (y0, y1, num_values):
     else:
         # normal case
         beta = math.log (y1 / y0) / float (num_values - 1)
-        for i in xrange (0, num_values):
+        for i in range (0, num_values):
             yi = y0 * math.exp (beta * float (i))
             rtn.append (yi)
     return rtn
@@ -185,7 +186,7 @@ def rgb_patch_plot (
     # make plot with each color with one patch
     pylab.clf()
     num_colors = len (rgb_colors)
-    for i in xrange (0, num_colors):
+    for i in range (0, num_colors):
         (iy, ix) = divmod (i, num_across)
         # get color as a displayable string
         colorstring = colormodels.irgb_string_from_rgb (rgb_colors [i])
@@ -197,7 +198,7 @@ def rgb_patch_plot (
     pylab.axis ('off')
     pylab.title (title)
     if filename is not None:
-        print 'Saving plot %s' % str (filename)
+        print('Saving plot %s' % str (filename))
         pylab.savefig (filename)
 
 def xyz_patch_plot (
@@ -229,7 +230,7 @@ def spectrum_subplot (spectrum):
     (num_wl, num_cols) = spectrum.shape
     # get rgb colors for each wavelength
     rgb_colors = numpy.empty ((num_wl, 3))
-    for i in xrange (0, num_wl):
+    for i in range (0, num_wl):
         wl_nm = spectrum [i][0]
         xyz = ciexyz.xyz_from_wavelength (wl_nm)
         rgb_colors [i] = colormodels.rgb_from_xyz (xyz)
@@ -238,7 +239,7 @@ def spectrum_subplot (spectrum):
     scaling = 1.0 / rgb_max
     rgb_colors *= scaling        
     # draw color patches (thin vertical lines matching the spectrum curve) in color
-    for i in xrange (0, num_wl-1):    # skipping the last one here to stay in range
+    for i in range (0, num_wl-1):    # skipping the last one here to stay in range
         x0 = spectrum [i][0]
         x1 = spectrum [i+1][0]
         y0 = spectrum [i][1]
@@ -294,7 +295,7 @@ def spectrum_plot (
     pylab.ylabel (ylabel)
     # done
     if filename is not None:
-        print 'Saving plot %s' % str (filename)
+        print('Saving plot %s' % str (filename))
         pylab.savefig (filename)
 
 #
@@ -329,7 +330,7 @@ def color_vs_param_plot (
     pylab.title (title)
     # no xlabel, ylabel in upper plot
     num_points = len (param_list)
-    for i in xrange (0, num_points-1):
+    for i in range (0, num_points-1):
         x0 = param_list [i]
         x1 = param_list [i+1]
         y0 = 0.0
@@ -351,7 +352,7 @@ def color_vs_param_plot (
     pylab.xlabel (xlabel)
     pylab.ylabel (ylabel)
     if filename is not None:
-        print 'Saving plot %s' % str (filename)
+        print('Saving plot %s' % str (filename))
         pylab.savefig (filename)
 
 #
@@ -364,7 +365,7 @@ def visible_spectrum_plot ():
     (num_wl, num_cols) = spectrum.shape
     # get rgb colors for each wavelength
     rgb_colors = numpy.empty ((num_wl, 3))
-    for i in xrange (0, num_wl):
+    for i in range (0, num_wl):
         xyz = ciexyz.xyz_from_wavelength (spectrum [i][0])
         rgb = colormodels.rgb_from_xyz (xyz)
         rgb_colors [i] = rgb
@@ -389,7 +390,7 @@ def cie_matching_functions_plot ():
     spectrum_y = ciexyz.empty_spectrum()
     spectrum_z = ciexyz.empty_spectrum()
     (num_wl, num_cols) = spectrum_x.shape
-    for i in xrange (0, num_wl):
+    for i in range (0, num_wl):
         wl_nm = spectrum_x [i][0]
         xyz = ciexyz.xyz_from_wavelength (wl_nm)
         spectrum_x [i][1] = xyz [0]
@@ -417,7 +418,7 @@ def cie_matching_functions_plot ():
     tighten_x_axis (spectrum_x [:,0])
     # done
     filename = 'CIEXYZ_Matching'
-    print 'Saving plot %s' % str (filename)
+    print('Saving plot %s' % str (filename))
     pylab.savefig (filename)
 
 def shark_fin_plot ():
@@ -427,7 +428,7 @@ def shark_fin_plot ():
     # get normalized colors
     xy_list = xyz_list.copy()
     (num_colors, num_cols) = xy_list.shape
-    for i in xrange (0, num_colors):
+    for i in range (0, num_colors):
         colormodels.xyz_normalize (xy_list [i])
     # get phosphor colors and normalize
     red   = colormodels.PhosphorRed
@@ -451,7 +452,7 @@ def shark_fin_plot ():
     pylab.clf ()
     # draw color patches for point in xy_list
     s = 0.025     # distance in xy plane towards white point
-    for i in xrange (0, len (xy_list)-1):
+    for i in range (0, len (xy_list)-1):
         x0 = xy_list [i][0]
         y0 = xy_list [i][1]
         x1 = xy_list [i+1][0]
@@ -486,7 +487,7 @@ def shark_fin_plot ():
     pylab.ylabel (r'CIE $y$')
     pylab.title (r'CIE Chromaticity Diagram')
     filename = 'ChromaticityDiagram'
-    print 'Saving plot %s' % (str (filename))
+    print('Saving plot %s' % (str (filename)))
     pylab.savefig (filename)
 
 # Special figures
