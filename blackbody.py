@@ -67,7 +67,7 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with ColorPy.  If not, see <http://www.gnu.org/licenses/>.
 '''
-from __future__ import division, absolute_import, print_function
+
 
 import math, numpy, pylab
 
@@ -176,9 +176,9 @@ def figures ():
     blackbody_patch_plot (T_list_cool, 'Cool Blackbody Colors', 'Blackbody-CoolPatch')
 
     # color vs temperature
-    blackbody_color_vs_temperature_plot (range (1200, 16000, 50),   'Blackbody Colors',      'Blackbody-Colors')
-    blackbody_color_vs_temperature_plot (range (10000, 40000, 100), 'Hot Blackbody Colors',  'Blackbody-HotColors')
-    blackbody_color_vs_temperature_plot (range (950, 1200, 1),      'Cool Blackbody Colors', 'Blackbody-CoolColors')
+    blackbody_color_vs_temperature_plot (list(range(1200, 16000, 50)),   'Blackbody Colors',      'Blackbody-Colors')
+    blackbody_color_vs_temperature_plot (list(range(10000, 40000, 100)), 'Hot Blackbody Colors',  'Blackbody-HotColors')
+    blackbody_color_vs_temperature_plot (list(range(950, 1200, 1)),      'Cool Blackbody Colors', 'Blackbody-CoolColors')
 
     # spectrum of specific temperatures
     blackbody_spectrum_plot (2000.0)

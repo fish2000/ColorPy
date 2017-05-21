@@ -62,7 +62,7 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with ColorPy.  If not, see <http://www.gnu.org/licenses/>.
 '''
-from __future__ import division, absolute_import, print_function
+
 
 import math
 import numpy, pylab
@@ -160,7 +160,7 @@ def figures ():
         'Rayleigh Scattering by Various Illuminants', 'Rayleigh-PatchVarious')
 
     # color vs illuminant temperature
-    T_list = range (1200, 16000, 50)    # must be integers for range()
+    T_list = list(range(1200, 16000, 50))    # must be integers for range()
     rayleigh_color_vs_illuminant_temperature_plot (T_list, 'Rayleigh Scattering Sky Colors', 'Rayleigh-SkyColors')
 
     # spectra for several illuminants

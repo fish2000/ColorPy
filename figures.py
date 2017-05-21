@@ -42,7 +42,7 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with ColorPy.  If not, see <http://www.gnu.org/licenses/>.
 '''
-from __future__ import division, absolute_import, print_function
+
 
 from . import (colormodels, ciexyz, illuminants, plots, blackbody,
                rayleigh, thinfilm, misc)
