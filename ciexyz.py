@@ -116,7 +116,7 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with ColorPy.  If not, see <http://www.gnu.org/licenses/>.
 '''
-from __future__ import division, absolute_import, print_function
+
 
 import math, numpy
 
@@ -690,7 +690,7 @@ def empty_spectrum ():
 
     The result can be passed to xyz_from_spectrum() to convert to an xyz color.
     '''
-    wl_nm_range = range (start_wl_nm, end_wl_nm + 1)
+    wl_nm_range = list(range(start_wl_nm, end_wl_nm + 1))
     num_wl = len (wl_nm_range)
     spectrum = numpy.zeros ((num_wl, 2))
     for i in range (0, num_wl):
@@ -742,7 +742,7 @@ def get_normalized_spectral_line_colors (
     dwl_angstroms - Wavelength separation, in angstroms (0.1 nm).  Default 10 A. (1 nm spacing)
     '''
     # get range of wavelengths, in angstroms, so that we can have finer resolution than 1 nm
-    wl_angstrom_range = range (10*start_wl_nm, 10*(end_wl_nm + 1), dwl_angstroms)
+    wl_angstrom_range = list(range(10*start_wl_nm, 10*(end_wl_nm + 1), dwl_angstroms))
     # get total point count
     num_spectral = len (wl_angstrom_range)
     num_points   = num_spectral + num_purples

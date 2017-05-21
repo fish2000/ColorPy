@@ -82,7 +82,7 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with ColorPy.  If not, see <http://www.gnu.org/licenses/>.
 '''
-from __future__ import division, absolute_import, print_function
+
 
 import math, cmath, numpy
 import pylab
@@ -209,7 +209,7 @@ def thinfilm_spectrum_plot (n1, n2, n3, thickness_nm, illuminant, title, filenam
 def figures ():
     '''Draw some thin film plots.'''
     # simple patch plot
-    thickness_nm_list = range (0, 1000, 10)
+    thickness_nm_list = list(range(0, 1000, 10))
     illuminant = illuminants.get_illuminant_D65()
     illuminants.scale_illuminant (illuminant, 9.50)
     thinfilm_patch_plot (1.500, 1.003, 1.500, thickness_nm_list, illuminant, 'ThinFilm Patch Plot', 'ThinFilm-Patch')
@@ -217,7 +217,7 @@ def figures ():
     # plot the colors of films vs thickness.
     # we scale the illuminant to get a better range of color.
     #thickness_nm_list = range (0, 1000, 2)   # faster
-    thickness_nm_list = range (0, 1000, 1)    # nicer
+    thickness_nm_list = list(range(0, 1000, 1))    # nicer
     # gap in glass/plastic
     illuminant = illuminants.get_illuminant_D65()
     illuminants.scale_illuminant (illuminant, 4.50)
