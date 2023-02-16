@@ -26,7 +26,7 @@ from __future__ import division, absolute_import, print_function
 
 import random
 
-from . import rayleigh, illuminants
+from colorpy import rayleigh, illuminants
 
 def test ():
     '''Mainly call some functions.'''

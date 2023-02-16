@@ -26,7 +26,7 @@ from __future__ import division, absolute_import, print_function
 
 import random
 
-from . import ciexyz
+from colorpy import ciexyz
 
 def test (verbose=0):
     '''Test the CIE XYZ conversions.  Mainly call some functions.'''

@@ -26,7 +26,7 @@ from __future__ import division, absolute_import, print_function
 
 import random
 
-from . import illuminants, thinfilm
+from colorpy import illuminants, thinfilm
 
 def test ():
     '''Module test.  Mainly call some functions.'''
