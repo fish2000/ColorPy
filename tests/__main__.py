@@ -40,5 +40,6 @@ def test ():
     test_blackbody.test()
     test_rayleigh.test()
     test_thinfilm.test()
-    
-    
+
+if __name__ == "__main__":
+    test()
