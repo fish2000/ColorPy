@@ -16,7 +16,7 @@ python setup.py sdist --formats=gztar
 python setup.py bdist_wininst
 '''
 
-from distutils.core import setup
+from setuptools import setup
 
 data_files = [
     'README.rst',
