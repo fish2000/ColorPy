@@ -1,3 +1,33 @@
 [build-system]
-requires = ["setuptools>=42.2"]
+requires = ["setuptools>=61.2"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "colorpy"
+version = "0.1.1"
+authors = [{name = "Mark Kness", email = "mkness@alumni.utexas.net"}]
+license = {text = "LGPL-3.0-or-later"}
+description = "Color calculations with physical descriptions of light spectra"
+
+[project.readme]
+text = "ColorPy is a Python package to convert physical descriptions of light spectra of light intensity vs. wavelength - into RGB colors that can be drawn on a computer screen. It provides a nice set of attractive plots that you can make of such spectra, and some other color related functions as well."
+content-type = "text/plain"
+
+[project.urls]
+Homepage = "http://markkness.net/colorpy/"
+"Source Code" = "https://github.com/fish2000/colorpy"
+"Issue Tracker" = "https://github.com/fish2000/colorpy/issues"
+
+[tool.setuptools]
+package-dir = {colorpy = "."}
+packages = ["colorpy"]
+include-package-data = false
+
+[tool.setuptools.package-data]
+colorpy = [
+    "README.rst",
+    "COPYING.txt",
+    "COPYING.LESSER.txt",
+    "license.txt",
+    "ColorPy.html",
+]
