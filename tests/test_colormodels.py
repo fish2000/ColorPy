@@ -25,7 +25,7 @@ along with ColorPy.  If not, see <http://www.gnu.org/licenses/>.
 from __future__ import division, absolute_import, print_function
 
 import math, random, numpy
-from . import colormodels, ciexyz
+from colorpy import colormodels, ciexyz
 
 def test_xyz_rgb (verbose=1):
     '''Test that xyz_to_rgb() and rgb_to_xyz() are inverses.'''

@@ -26,7 +26,7 @@ from __future__ import division, absolute_import, print_function
 
 import math, random, numpy
 
-from . import colormodels, blackbody
+from colorpy import colormodels, blackbody
 
 STEFAN_BOLTZMAN = 5.670e-8        # W/(m^2 K^4)
 

@@ -1,5 +1,5 @@
 '''
-test_ciexyz.py - Test module for ciexyz.py.
+test_thinfilm.py - Test module for thinfilm.py.
 
 License:
 
@@ -26,21 +26,22 @@ from __future__ import division, absolute_import, print_function
 
 import random
 
-from . import ciexyz
+from colorpy import illuminants, thinfilm
 
-def test (verbose=0):
-    '''Test the CIE XYZ conversions.  Mainly call some functions.'''
-    for i in range (0, 100):
-        wl_nm = 1000.0 * random.random()
-        xyz = ciexyz.xyz_from_wavelength (wl_nm)
-        if verbose >= 1:
-            print('wl_nm = %g, xyz = %s' % (wl_nm, str (xyz)))
-    for i in range (0, 10):
-        empty = ciexyz.empty_spectrum ()
-        xyz = ciexyz.xyz_from_spectrum (empty)
-        if verbose >= 1:
-            print('black = %s' % (str (xyz)))
-        xyz_555 = ciexyz.xyz_from_wavelength (555.0)
-        if verbose >= 1:
-            print('555 nm = %s' % (str (xyz_555)))
-    print('test_ciexyz.test() passed.')
+def test ():
+    '''Module test.  Mainly call some functions.'''
+    illuminant = illuminants.get_illuminant_D65()
+    for j in range (0, 100):
+        n1 = 5.0 * random.random()
+        n2 = 5.0 * random.random()
+        n3 = 5.0 * random.random()
+        thickness_nm = 10000.0 * random.random()
+        film = thinfilm.thin_film (n1, n2, n3, thickness_nm)
+        for k in range (0, 100):
+            wl_nm = 1000.0 * random.random()
+            film.get_interference_reflection_coefficient (wl_nm)
+        film.reflection_spectrum ()
+        film.illuminated_spectrum (illuminant)
+        film.illuminated_color (illuminant)
+    print('test_thinfilm.test() passed.')     # no exceptions
+        

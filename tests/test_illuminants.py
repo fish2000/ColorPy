@@ -1,5 +1,5 @@
 '''
-test_rayleigh.py - Test module for rayleigh.py.
+test_illuminants.py - Test module for illuminants.py.
 
 License:
 
@@ -24,18 +24,28 @@ along with ColorPy.  If not, see <http://www.gnu.org/licenses/>.
 '''
 from __future__ import division, absolute_import, print_function
 
-import random
+from colorpy import illuminants
 
-from . import rayleigh, illuminants
-
-def test ():
+def test (verbose=0):
     '''Mainly call some functions.'''
-    for i in range (0, 100):
-        wl_nm = 1000.0 * random.random()
-        rayleigh.rayleigh_scattering (wl_nm)
-    rayleigh.rayleigh_scattering_spectrum()
-    illum = illuminants.get_illuminant_D65()
-    rayleigh.rayleigh_illuminated_spectrum (illum)
-    rayleigh.rayleigh_illuminated_color (illum)
-    print('test_rayleigh.test() passed.')  # didnt exception
+    D65 = illuminants.get_illuminant_D65()
+    if verbose >= 1:
+        print('Illuminant D65')
+        print(str (D65))
+    A = illuminants.get_illuminant_A()
+    if verbose >= 1:
+        print('Illuminant A')
+        print(str (A))
+    const = illuminants.get_constant_illuminant()
+    if verbose >= 1:
+        print('Constant Illuminant')
+        print(str (const))
 
+    T_list = [0.0, 1.0, 100.0, 1000.0, 5778.0, 10000.0, 100000.0]
+    for T in T_list:
+        bb = illuminants.get_blackbody_illuminant (T)
+        if verbose >= 1:
+            print('Blackbody Illuminant : %g K' % (T))
+            print(str (bb))
+    print('test_illuminants.test() passed.')
+   
